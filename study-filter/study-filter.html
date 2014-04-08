@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script language='javascript' src='build/main.js'></script>
+    <style>
+      .graph-holder {
+        display: inline-block;
+        width: 250px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body onload='study_filter.init()'>
+    <input type="text" style="width: 400px">
+    <button onclick='study_filter.search()'>search</button>
+    <div id="holder">
+      Results go here...
+    </div>
+  </body>
+</html>
