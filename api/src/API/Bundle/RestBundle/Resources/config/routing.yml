@@ -1,0 +1,3 @@
+api_rest_items:
+    type: rest
+    resource: API\Bundle\RestBundle\Controller\DefaultController
