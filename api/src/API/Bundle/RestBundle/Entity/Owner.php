@@ -5,6 +5,7 @@ namespace API\Bundle\RestBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -14,6 +15,11 @@ use JMS\Serializer\Annotation\Exclude;
  */
 class Owner
 {
+    const OWNER_TYPE_INDIVIDUAL = 1;
+    const OWNER_TYPE_COMMERCIAL_ORGANIZATION = 2;
+    const OWNER_TYPE_UNIVERSITY = 3;
+    const OWNER_TYPE_RESEARCH_ORGANIZATION = 4;
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -23,62 +29,67 @@ class Owner
 
     /**
      * Could be academic institution, clinic etc.
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $type;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $organizationName;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $phoneNumber;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $mobileNumber;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $addressLine1;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $addressLine2;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $addressLine3;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $city;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $country;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $postcode;
 
@@ -328,5 +339,20 @@ class Owner
         return $this->type;
     }
 
+    /**
+     * @param mixed $organizationName
+     */
+    public function setOrganizationName($organizationName)
+    {
+        $this->organizationName = $organizationName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganizationName()
+    {
+        return $this->organizationName;
+    }
 
 } 

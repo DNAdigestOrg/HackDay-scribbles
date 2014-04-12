@@ -63,7 +63,7 @@ class Item
     protected $issues;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Owner", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="Owner", inversedBy="items", cascade="persist")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
     protected $owner;
@@ -92,6 +92,31 @@ class Item
      * @ORM\Column(type="string", nullable=true)
      */
     protected $tagCloud;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $population;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $sampleSize;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $frequency;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $gender;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $sampleType;
 
     public function __construct()
     {
@@ -331,5 +356,101 @@ class Item
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param mixed $frequency
+     */
+    public function setFrequency($frequency)
+    {
+        $this->frequency = $frequency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param mixed $population
+     */
+    public function setPopulation($population)
+    {
+        $this->population = $population;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPopulation()
+    {
+        return $this->population;
+    }
+
+    /**
+     * @param mixed $sampleSize
+     */
+    public function setSampleSize($sampleSize)
+    {
+        $this->sampleSize = $sampleSize;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSampleSize()
+    {
+        return $this->sampleSize;
+    }
+
+    /**
+     * @param mixed $sampleType
+     */
+    public function setSampleType($sampleType)
+    {
+        $this->sampleType = $sampleType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSampleType()
+    {
+        return $this->sampleType;
     }
 } 
