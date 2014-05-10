@@ -247,7 +247,7 @@ class Item
     }
 
     /**
-     * @param mixed $noOfAccessRequests
+     * @param integer $noOfAccessRequests
      */
     public function setNoOfAccessRequests($noOfAccessRequests)
     {
@@ -255,7 +255,7 @@ class Item
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getNoOfAccessRequests()
     {
@@ -263,7 +263,7 @@ class Item
     }
 
     /**
-     * @param mixed $noOfViews
+     * @param integer $noOfViews
      */
     public function setNoOfViews($noOfViews)
     {
@@ -271,7 +271,7 @@ class Item
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getNoOfViews()
     {
