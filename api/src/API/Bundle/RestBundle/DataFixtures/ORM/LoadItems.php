@@ -76,7 +76,7 @@ class LoadItems implements FixtureInterface
         $item->setSampleType("RNA");
         $item->setPopulation("American Caribbeans in Barbados");
         $item->setTechnology("Illumina");
-        $item->setTitle("Comparative research on genome mutations in some people who I dont know");
+        $item->setTitle("A different research on genome mutations - awesome!");
         $item->setSummary("I am tired of writing this");
         $item->setTagCloud("genomics, space, play, win");
 
