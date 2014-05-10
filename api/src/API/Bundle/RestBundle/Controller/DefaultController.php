@@ -37,7 +37,6 @@ class DefaultController extends FOSRestController
             $items = $repository->findAll();
         }
 
-
         $view = $this->view($items, 200);
 
         return $this->handleView($view);
@@ -55,7 +54,15 @@ class DefaultController extends FOSRestController
      */
     public function getItemAction($itemId)
     {
+        $repository = $this->getDoctrine()
+            ->getRepository('APIRestBundle:Item');
 
+
+        $item = $repository->find($itemId);
+
+        $view = $this->view($item, 200);
+
+        return $this->handleView($view);
     }
 
     /**
