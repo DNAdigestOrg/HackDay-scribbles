@@ -26,10 +26,17 @@ class DefaultController extends FOSRestController
      */
     public function getItemsAction()
     {
+        $searchTerm = $this->getRequest()->get('search-term');
+
         $repository = $this->getDoctrine()
             ->getRepository('APIRestBundle:Item');
 
-        $items = $repository->findAll();
+        if ($searchTerm){
+            $items = $this->search($searchTerm);
+        } else {
+            $items = $repository->findAll();
+        }
+
 
         $view = $this->view($items, 200);
 
@@ -63,5 +70,22 @@ class DefaultController extends FOSRestController
     public function postItemAction()
     {
 
+    }
+
+    private function search($searchTerm)
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository('APIRestBundle:Item');
+
+        $query = $repository->createQueryBuilder('i')
+            //->where('i.OrderEmail = :email')
+            //->andWhere('o.Product LIKE :product')
+            ->where('i.title LIKE :title')
+            ->setParameter('title', '%'.$searchTerm.'%')
+            ->getQuery();
+
+        $items = $query->getResult();
+
+        return $items;
     }
 }
