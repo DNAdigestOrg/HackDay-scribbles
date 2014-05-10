@@ -80,8 +80,16 @@ class DefaultController extends FOSRestController
         $query = $repository->createQueryBuilder('i')
             //->where('i.OrderEmail = :email')
             //->andWhere('o.Product LIKE :product')
-            ->where('i.title LIKE :title')
-            ->setParameter('title', '%'.$searchTerm.'%')
+            ->where('i.title LIKE :searchTerm')
+            ->orWhere('i.host LIKE :searchTerm')
+            ->orWhere('i.summary LIKE :searchTerm')
+            ->orWhere('i.description LIKE :searchTerm')
+            ->orWhere('i.location LIKE :searchTerm')
+            ->orWhere('i.technology LIKE :searchTerm')
+            ->orWhere('i.tagCloud LIKE :searchTerm')
+            ->orWhere('i.population LIKE :searchTerm')
+            ->orWhere('i.sampleType LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
             ->getQuery();
 
         $items = $query->getResult();
