@@ -60,3 +60,27 @@ Enjoy!
 [1]:  http://symfony.com/doc/2.4/book/installation.html
 [2]:  http://getcomposer.org/
 [3]:  http://ec2-54-186-176-144.us-west-2.compute.amazonaws.com/app_dev.php/api/doc/
+
+6) Installation on OSX
+----------------------
+
+This seems to work mostly out of the box in Mac OS 10.9 (Mavericks), but some PHP stuff isn't well documented.  The following worked for @dasmoth:
+
+Install MySQL
+Activate PHP in Apache.  In /etc/apache/httpd.conf, uncomment the line:
+
+    LoadModule php5_module libexec/apache2/libphp5.so
+
+(Important), create an /etc/php.ini file containing a line like:
+
+    date.timezone = "Europe/London
+
+Restart (or start) Apache
+ 
+    sudo apachectl restart
+    
+Install composer (as above) then
+
+    php composer.phar update
+    
+Then procede as above.
