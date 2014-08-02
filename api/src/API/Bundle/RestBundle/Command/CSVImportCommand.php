@@ -8,6 +8,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use API\Bundle\RestBundle\Entity\Item;
+
 class CSVImportCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -25,11 +27,31 @@ class CSVImportCommand extends ContainerAwareCommand
     {
         $kernel = $this->getContainer()->get('kernel');
         $path = $kernel->locateResource('@APIRestBundle/Command/EGA.csv');
+        $em = $this->getContainer()->get('doctrine')->getManager();
+
+        $items = [];
 
         $handle = fopen($path, "r");
         while(($array=fgetcsv($handle))!== FALSE){
-            echo print_r($array);
+            $item = new Item();
+            $item->setHost('EGA');
+            $item->setStudyId($array[0]);
+            $item->setStudyTitle($array[1]);
+            $item->setStudyDescription($array[2]);
+            $item->setDatasetId($array[3]);
+            $item->setDatasetTitle($array[4]);
+            $item->setDatasetDescription($array[5]);
+            $item->setTechnology($array[6]);
+            $item->setAccessType('public');
+            $items[] = $item;
         }
+
+        foreach ($items as $item){
+            $em->persist($item);
+        }
+
+        $em->flush();
+
         fclose($handle);
     }
 } 
