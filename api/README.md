@@ -83,4 +83,13 @@ Install composer (as above) then
 
     php composer.phar update
     
-Then procede as above.
+Then proceed as above.
+
+7) Importing data
+------------------
+
+There are commands that can be created to import data.  For example, an example EGA dataset was imported with the command
+    
+    app/console ega:import EGA.csv
+    
+Note: Please place the file under the command folder for the import to work.
