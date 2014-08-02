@@ -31,7 +31,7 @@ class LoadItems implements FixtureInterface
 
         $item = new Item();
         $item->setAccessType(Item::ACCESS_TYPE_PUBLIC);
-        $item->setDescription("This one talks about cancer");
+        $item->setStudyDescription("This one talks about cancer");
         $item->setFileFormat("hfx");
         $item->setFrequency(70);
         $item->setGender("Male");
@@ -64,7 +64,7 @@ class LoadItems implements FixtureInterface
 
         $item = new Item();
         $item->setAccessType(Item::ACCESS_TYPE_PUBLIC);
-        $item->setDescription("This one talks about genetics");
+        $item->setStudyDescription("This one talks about genetics");
         $item->setFileFormat("hfx");
         $item->setFrequency(20);
         $item->setHost("Some Company");

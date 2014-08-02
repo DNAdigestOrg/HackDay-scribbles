@@ -216,8 +216,12 @@ class DefaultController extends FOSRestController
             $item->setSummary($this->getRequest()->get('summary'));
         }
 
-        if ($this->getRequest()->get('description')){
-            $item->setDescription($this->getRequest()->get('description'));
+        if ($this->getRequest()->get('study_description')){
+            $item->setStudyDescription($this->getRequest()->get('study_description'));
+        }
+
+        if ($this->getRequest()->get('dataset_description')){
+            $item->setDatasetDescription($this->getRequest()->get('dataset_description'));
         }
 
         if ($this->getRequest()->get('access_type')){

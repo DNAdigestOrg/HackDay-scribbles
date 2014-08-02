@@ -55,7 +55,12 @@ class Item
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    protected $studyDescription;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $datasetDescription;
 
     /**
      * @ORM\Column(type="string")
@@ -152,22 +157,6 @@ class Item
     public function getAccessType()
     {
         return $this->accessType;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -515,5 +504,37 @@ class Item
     public function getDatasetTitle()
     {
         return $this->datasetTitle;
+    }
+
+    /**
+     * @param mixed $datasetDescription
+     */
+    public function setDatasetDescription($datasetDescription)
+    {
+        $this->datasetDescription = $datasetDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatasetDescription()
+    {
+        return $this->datasetDescription;
+    }
+
+    /**
+     * @param mixed $studyDescription
+     */
+    public function setStudyDescription($studyDescription)
+    {
+        $this->studyDescription = $studyDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStudyDescription()
+    {
+        return $this->studyDescription;
     }
 } 

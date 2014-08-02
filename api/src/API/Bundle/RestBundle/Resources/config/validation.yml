@@ -6,7 +6,7 @@ API\Bundle\RestBundle\Entity\Item:
       - NotBlank: ~
     summary:
       - NotBlank: ~
-    description:
+    studyDescription:
       - NotBlank: ~
     accessType:
       - Choice: [public, limited, restricted]
