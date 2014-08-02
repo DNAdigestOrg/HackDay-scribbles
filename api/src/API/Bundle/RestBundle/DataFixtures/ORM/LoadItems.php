@@ -44,7 +44,7 @@ class LoadItems implements FixtureInterface
         $item->setSampleType("RNA");
         $item->setPopulation("African Caribbeans in Barbados");
         $item->setTechnology("Illumina");
-        $item->setTitle("Comparative research on exome mutations in some people who I dont know");
+        $item->setStudyTitle("Comparative research on exome mutations in some people who I dont know");
         $item->setSummary("I am tired of writing this");
         $item->setTagCloud("cancer, space, play, win");
 
@@ -76,7 +76,7 @@ class LoadItems implements FixtureInterface
         $item->setSampleType("RNA");
         $item->setPopulation("American Caribbeans in Barbados");
         $item->setTechnology("Illumina");
-        $item->setTitle("A different research on genome mutations - awesome!");
+        $item->setStudyTitle("A different research on genome mutations - awesome!");
         $item->setSummary("I am tired of writing this");
         $item->setTagCloud("genomics, space, play, win");
 
