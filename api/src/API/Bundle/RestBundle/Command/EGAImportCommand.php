@@ -10,12 +10,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use API\Bundle\RestBundle\Entity\Item;
 
-class CSVImportCommand extends ContainerAwareCommand
+class EGAImportCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('csv:import')
+            ->setName('ega:import')
             ->setDescription('Import metadata from CSV')
             ->addArgument(
                 'file',
@@ -26,7 +26,7 @@ class CSVImportCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $kernel = $this->getContainer()->get('kernel');
-        $path = $kernel->locateResource('@APIRestBundle/Command/EGA.csv');
+        $path = $kernel->locateResource('@APIRestBundle/Command/'. $input->getArgument('file'));
         $em = $this->getContainer()->get('doctrine')->getManager();
 
         $items = [];
