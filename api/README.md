@@ -45,7 +45,7 @@ Then run fixtures:
 4) Setting up API sandbox
 -------------------------------
 
-Please set your apache config to point to api/web/ folder. You can access the sandbox from <<ServerName>>/app_dev.php/api/doc
+Please set your apache config to point to api/web/ folder. You can access the sandbox from <ServerName>/app_dev.php/api/doc
 
 You can find the hosted version of the API sandbox [here][3]
 
@@ -53,7 +53,7 @@ You can find the hosted version of the API sandbox [here][3]
 5) Licence
 ------------
 
-All libraries and bundles are released under the Apache license.
+All libraries and bundles are released under Apache license.
 
 Enjoy!
 
