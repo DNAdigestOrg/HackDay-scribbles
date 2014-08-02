@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DNAdigest</title>
+
+    <!-- Bootstrap -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+   <script>
+  jQuery(document).ready(function(){
+
+    var API ='http://ec2-54-186-176-144.us-west-2.compute.amazonaws.com/app_dev.php/items.json'
+
+    $('#search-button').click(function(evt) {
+      var search = $('#search-field').val()
+      var endpoint = API + '?search-term=' + search
+      console.log(endpoint)
+      $.ajax(encodeURI(endpoint)).done(function(data) {
+        var templatedResults = ""
+        data.forEach(function(val) {
+          var templatedResult =
+            '<div class="panel panel-default" >' +
+              '<div class="panel-heading">' +
+                '<div class="panel-heading">' +
+                  '<h3 class="panel-title">'+
+                    '<a data-toggle="collapse" data-parent="#results" href="#collapse'+val.id+'">'+val.title+'</a>' +
+                  '</h3>' +
+                  '<div class="permissions">' +
+                  '  <span class="label label-success">available</span>' +
+                  '</div>' +
+                  '<div class="reports">' +
+                    '<span class="glyphicon glyphicon-flag"></span>' +
+                    '<span class="badge">4</span>' +
+                  '</div>' +
+                  '<p class="views">Views<span class="badge no_views">' + val.no_of_views + '</span></p>' +
+                  '<p class="views">Access requests<span class=' +'"badge access_req">' + val.no_of_access_requests + '</span></p>' +
+                // '</div>' +
+                '<div id="collapse'+val.id+'" class="panel-collapse collapse">' +
+                  '<div class="panel-body summary">' +
+                    '<p>' + val.summary + '<p>' +
+                  '</div>' +
+                  '<div class="panel-body host">' +
+                    val.host +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>'
+          templatedResults += templatedResult
+        })
+        $('#results').html(templatedResults)
+        $('.collapse').collapse()
+      })
+    })
+
+    $("#search-field").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#search-button").click();
+        }
+    });
+    $('.collapse').collapse()
+  })
+</script>
+  <style>
+    body {
+      background: #eee
+    }
+    .center-block {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <style type="text/css">
+    .summary {
+      border-bottom: 1px solid #ccc;
+    }
+    .views {
+      padding-right: 10px;
+      display: inline-block;
+      color: #252525;
+    }
+    .permissions .label{
+      display: block;
+      font-size:  16px;
+      margin-left: 20px;
+    }
+    .permissions {
+      float: right;
+      display: block;
+    }
+    .permissions p {
+      float: right;
+      font-size: 12px;
+      display: block;
+    }
+    .badge {
+      margin-left: 5px;
+    }
+    .reports {
+      float: right;
+    }
+    .reports .badge {
+      display: inline-block;
+      float: left;
+      background: red;
+    }
+    .glyphicon-flag {
+      color: red;
+      float: left;
+      display: inline-block;
+      margin-right: 5px;
+      font-size: 20px;
+    .result {
+      padding: 5%;
+    }
+    }
+    .
+  </style>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <!--<link href="js/jquery-1.10.2.js" rel="stylesheet">-->
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" style="background: #8D9AA5; height: 100%;">
+        <h2><i class="fa fa-gear"></i> Filters</h2>
+        <hr>
+        <label for="location">Population:</label> <select class="form-control"
+        id="population" name="population" style="width:150px">
+          <option value="all">
+            All
+          </option>
+
+          <option value="ACB">
+            African Carribbeans in Barbados
+          </option>
+
+          <option value="CHB">
+            Han Chinese in Bejing, China
+          </option>
+
+          <option value="GBR">
+            British in England and Scotland
+          </option>
+
+          <option value="others">
+            ...
+          </option>
+        </select>
+        <br>
+        <label for="size">Number of Samples:</label> <input id="size" style=
+        "border:0; color:#808080; font-weight:bold;" type="text">
+
+        <div id="slider-size"></div>
+        <br>
+        <label for="frequency">Frequency:</label>
+        <br>
+        <input id="frequency" style=
+        "border:0; color:#808080; font-weight:bold;" type="text">
+
+        <div id="slider-frequency"></div>
+        <br>
+        <label for="location">Gender:</label> <select class="form-control" id=
+        "gender" name="gender" style="width:150px">
+          <option value="all">
+            All
+          </option>
+
+          <option value="male">
+            Male
+          </option>
+
+          <option value="female">
+            Female
+          </option>
+        </select>
+        <br>
+        <label for="type">Sample Type:</label>
+
+        <div class="checkbox">
+          <label><input id="dna" name="dna" type="checkbox"> DNA
+          Sequence</label>
+        </div>
+
+        <div class="checkbox">
+          <label><input id="rna" name="rna" type="checkbox"> RNA
+          Sequence</label>
+        </div><label for="type">Access Type:</label>
+
+        <div class="checkbox">
+          <label><input id="openaccess" name="openaccess" type="checkbox"> Open
+          Access</label>
+        </div>
+
+        <div class="checkbox">
+          <label><input id="restrictedaccess" name="restrictedaccess" type=
+          "checkbox"> Restricted Access</label>
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="center-block"><img src=
+            "http://s7.postimg.org/4j0jjf9ob/logo.png"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9 col-md-offset-1">
+            <div class="center-block">
+              <div class="form-inline">
+                <div class="form-group" style="width: 50%;">
+                  <label class="sr-only" for="search">Search</label>
+                  <input class="form-control" id="search-field" placeholder=
+                  "Skin cancer in Humans" style="width: 100%;" type="search">
+                </div><button class="btn btn-default" id="search-button" type=
+                "button">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="padding-top:5%;">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="panel-group" id="results">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+  <!--<script src="js/jquery-ui-1.10.4.min.js"></script>-->
+  <script>
+    $(function() {
+      $( "#slider-size" ).slider({
+        range: true,
+        min: 0,
+        max: 10000,
+        values: [ 1000, 3000 ],
+        slide: function( event, ui ) {
+          $( "#size" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+      });
+      $( "#size" ).val( $( "#slider-size" ).slider( "values", 0 ) +
+        " - " + $( "#slider-size" ).slider( "values", 1 ) );
+    });
+
+    $(function() {
+      $( "#slider-frequency" ).slider({
+        range: true,
+        min: 0,
+        max: 100,
+        values: [ 10, 20 ],
+        slide: function( event, ui ) {
+          $( "#frequency" ).val( ui.values[ 0 ] + "% - " + ui.values[ 1 ] + "%" );
+        }
+      });
+    $( "#frequency" ).val( $( "#slider-frequency" ).slider( "values", 0 ) + "%" +
+      " - " + $( "#slider-frequency" ).slider( "values", 1 ) + "%" );
+    });
+
+  </script>
+</body>
+</html>
