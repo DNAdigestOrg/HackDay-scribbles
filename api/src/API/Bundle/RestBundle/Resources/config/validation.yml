@@ -1,23 +1,21 @@
 API\Bundle\RestBundle\Entity\Item:
   properties:
-    title:
+    studyTitle:
       - NotBlank: ~
     host:
       - NotBlank: ~
     summary:
       - NotBlank: ~
-    description:
+    studyDescription:
       - NotBlank: ~
     accessType:
       - Choice: [public, limited, restricted]
     noOfViews:
       - Type:
           type: integer
-      - NotBlank: ~
     noOfAccessRequests:
       - Type:
           type: integer
-      - NotBlank: ~
     sampleSize:
       - Type:
           type: integer

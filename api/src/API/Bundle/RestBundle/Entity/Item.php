@@ -25,7 +25,22 @@ class Item
     /**
      * @ORM\Column(type="string")
      */
-    protected $title;
+    protected $studyTitle;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $datasetTitle;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $studyId;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $datasetId;
 
     /**
      * @ORM\Column(type="string")
@@ -33,14 +48,19 @@ class Item
     protected $host;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $summary;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    protected $studyDescription;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $datasetDescription;
 
     /**
      * @ORM\Column(type="string")
@@ -50,12 +70,12 @@ class Item
     /**
      * @ORM\Column(type="integer")
      */
-    protected $noOfViews;
+    protected $noOfViews = 0;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $noOfAccessRequests;
+    protected $noOfAccessRequests = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="Issue", mappedBy="item")
@@ -137,22 +157,6 @@ class Item
     public function getAccessType()
     {
         return $this->accessType;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -343,22 +347,6 @@ class Item
     }
 
     /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * @param mixed $frequency
      */
     public function setFrequency($frequency)
@@ -452,5 +440,101 @@ class Item
     public function getSampleType()
     {
         return $this->sampleType;
+    }
+
+    /**
+     * @param mixed $datasetId
+     */
+    public function setDatasetId($datasetId)
+    {
+        $this->datasetId = $datasetId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatasetId()
+    {
+        return $this->datasetId;
+    }
+
+    /**
+     * @param mixed $studyId
+     */
+    public function setStudyId($studyId)
+    {
+        $this->studyId = $studyId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStudyId()
+    {
+        return $this->studyId;
+    }
+
+    /**
+     * @param mixed $studyTitle
+     */
+    public function setStudyTitle($studyTitle)
+    {
+        $this->studyTitle = $studyTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStudyTitle()
+    {
+        return $this->studyTitle;
+    }
+
+    /**
+     * @param mixed $datasetTitle
+     */
+    public function setDatasetTitle($datasetTitle)
+    {
+        $this->datasetTitle = $datasetTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatasetTitle()
+    {
+        return $this->datasetTitle;
+    }
+
+    /**
+     * @param mixed $datasetDescription
+     */
+    public function setDatasetDescription($datasetDescription)
+    {
+        $this->datasetDescription = $datasetDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatasetDescription()
+    {
+        return $this->datasetDescription;
+    }
+
+    /**
+     * @param mixed $studyDescription
+     */
+    public function setStudyDescription($studyDescription)
+    {
+        $this->studyDescription = $studyDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStudyDescription()
+    {
+        return $this->studyDescription;
     }
 } 

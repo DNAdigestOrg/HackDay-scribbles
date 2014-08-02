@@ -106,10 +106,14 @@ class DefaultController extends FOSRestController
         $query = $repository->createQueryBuilder('i')
             //->where('i.OrderEmail = :email')
             //->andWhere('o.Product LIKE :product')
-            ->where('i.title LIKE :searchTerm')
+            ->where('i.studyTitle LIKE :searchTerm')
+            ->orWhere('i.datasetId LIKE :searchTerm')
+            ->orWhere('i.studyId LIKE :searchTerm')
+            ->orWhere('i.datasetTitle LIKE :searchTerm')
             ->orWhere('i.host LIKE :searchTerm')
             ->orWhere('i.summary LIKE :searchTerm')
-            ->orWhere('i.description LIKE :searchTerm')
+            ->orWhere('i.studyDescription LIKE :searchTerm')
+            ->orWhere('i.datasetDescription LIKE :searchTerm')
             ->orWhere('i.location LIKE :searchTerm')
             ->orWhere('i.technology LIKE :searchTerm')
             ->orWhere('i.tagCloud LIKE :searchTerm')
@@ -189,8 +193,20 @@ class DefaultController extends FOSRestController
 
         // these if conditions are helpful in PUT requests, not really relevant for POST. just leaving it here
         // so copy paste while implementing edit might be easier.
-        if ($this->getRequest()->get('title')){
-            $item->setTitle($this->getRequest()->get('title'));
+        if ($this->getRequest()->get('studyTitle')){
+            $item->setTitle($this->getRequest()->get('study_title'));
+        }
+
+        if ($this->getRequest()->get('datasetTitle')){
+            $item->setTitle($this->getRequest()->get('dataset_title'));
+        }
+
+        if ($this->getRequest()->get('datasetId')){
+            $item->setTitle($this->getRequest()->get('dataset_id'));
+        }
+
+        if ($this->getRequest()->get('studyId')){
+            $item->setTitle($this->getRequest()->get('study_id'));
         }
 
         if ($this->getRequest()->get('host')){
@@ -201,8 +217,12 @@ class DefaultController extends FOSRestController
             $item->setSummary($this->getRequest()->get('summary'));
         }
 
-        if ($this->getRequest()->get('description')){
-            $item->setDescription($this->getRequest()->get('description'));
+        if ($this->getRequest()->get('study_description')){
+            $item->setStudyDescription($this->getRequest()->get('study_description'));
+        }
+
+        if ($this->getRequest()->get('dataset_description')){
+            $item->setDatasetDescription($this->getRequest()->get('dataset_description'));
         }
 
         if ($this->getRequest()->get('access_type')){
